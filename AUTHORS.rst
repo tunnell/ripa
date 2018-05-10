@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Christopher Tunnell <christopher.douglas.tunnell@gmail.com>
+* Christopher Tunnell <christopher.douglas.tunnell+ripa@gmail.com>
 
 Contributors
 ------------
