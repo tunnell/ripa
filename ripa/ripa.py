@@ -18,7 +18,10 @@ def process(todo):
     pip_todo = {}
 
     for req in todo:
-        command = 'conda install -y %s=%s' % (req.name, req.specs[0][-1])
+        if len(req.specs) and len(req.specs[0]):
+            command = 'conda install -y %s=%s' % (req.name, req.specs[0][-1])
+        else:
+            command = 'conda install -y %s' % (req.name)
 
         try:
             output = subprocess.check_output(command,

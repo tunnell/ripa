@@ -30,9 +30,17 @@ Or through this repository by::
 Usage
 -----
 
+The intention is to reproduce the `pip install` syntax.
+
 Point `ripa` at your `requirements file 
 <https://pip.readthedocs.io/en/1.1/requirements.html>`_ and then let 'er rip::
 
-  ripa --file requirements.txt
+  ripa -r requirements.txt
 
 It will then check each requirements and install prefarably though Anaconda, otherwise through pip.
+
+You can also install individual packages::
+
+  ripa pip==10.0
+  ripa wheel
+
