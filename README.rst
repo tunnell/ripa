@@ -10,7 +10,7 @@ Resolve Installations using Pip and Anaconda
         :target: https://travis-ci.org/tunnell/ripa
 
 
-This tool helps you handle requirements.txt installations (e.g. in CI) where uses Anaconda for some packages but also wants pip packages.
+This tool helps you handle requirements.txt installations (e.g. in CI) which use Anaconda for packages if that package and version are available, otherwise falls back to pip installing packages through PyPI.
 
 
 * Free software: GNU General Public License v3
@@ -30,8 +30,9 @@ Or through this repository by::
 Usage
 -----
 
-Point `ripa` at your requirements file and then let 'er rip::
+Point `ripa` at your `requirements file 
+<https://pip.readthedocs.io/en/1.1/requirements.html>`_ and then let 'er rip::
 
   ripa --file requirements.txt
 
-
+It will then check each requirements and install prefarably though Anaconda, otherwise through pip.
