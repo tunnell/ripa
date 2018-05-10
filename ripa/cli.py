@@ -3,46 +3,31 @@
 """Console script for ripa."""
 import sys
 import click
-import subprocess
 import requirements
-
+from ripa import ripa
 
 @click.command()
-@click.option('--file', prompt='Requirements file',
+@click.option('-r', #prompt='Requirements file',
               type=click.File('r'),
-              default='requirements.txt',
-              help='The name of the requirements fiile')
-def main(file):
+              required=False,
+              help='The name of the requirements file')
+@click.argument('package', nargs=-1)
+def main(r, package):
     """Console script for ripa."""
+    todo = []
 
-    # For each requirement, determine if in Anaconda                                                                        
-    pip_todo = {}
+    print(r, package)
     
-    for req in requirements.parse(file):
-        command = 'conda install -y %s=%s' % (req.name, req.specs[0][-1])
+    for name in package:
+        result = list(requirements.parse(name))[0]
+        print(result)
+        todo.append(result)
 
-        try:
-            output = subprocess.check_output(command,
-                                             stderr=subprocess.STDOUT,
-                                             shell=True,
-                                             universal_newlines=True)
-        except subprocess.CalledProcessError as exc:
-            command2 = 'pip install -q %s' % req.line
-            pip_todo[req.name] = command2
-        else:
-            click.echo('Anaconda: %s' % req.name)
+    if r:
+        for req in requirements.parse(r):
+            todo.append(req)
 
-    # Do rest                                                                                                               
-    for name, command2 in pip_todo.items():
-        try:
-            output = subprocess.check_output(command2,
-                                             stderr=subprocess.STDOUT,
-                                             shell=True,
-                                             universal_newlines=True)
-        except:
-            click.ClickException('%s: Failed with pip too' % name)
-        else:
-            click.echo('pip: %s' % name)
+    ripa.process(todo)
 
     return 0
 
