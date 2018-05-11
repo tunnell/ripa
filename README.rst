@@ -10,7 +10,7 @@ Resolve Installations using Pip and Anaconda
         :target: https://travis-ci.org/tunnell/ripa
 
 
-This tool helps you handle requirements.txt installations (e.g. in CI) which use Anaconda for packages if that package and version are available, otherwise falls back to pip installing packages through PyPI.
+This tool helps you handle requirements.txt installations (e.g. in CI) which use Anaconda for packages if that package and version are available, otherwise falls back to pip installing packages through PyPI.  This is particularly useful if you're using a service such as `PyUp <https://pyup.io>`_.
 
 
 * Free software: GNU General Public License v3
